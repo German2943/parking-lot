@@ -21,19 +21,9 @@ public class Main {
             SacarVehiculo vistaSacar = new SacarVehiculo();
             Factura vistaFactura = new Factura();
 
-            // Crear un mapa de tarifas
-            Map<String, Double> tarifas = new HashMap<>();
-            tarifas.put("Automovil", 2000.0);
-            tarifas.put("Motocicleta", 1000.0);
-            tarifas.put("Bicicleta", 500.0);
-
-            // Aquí obtenemos la capacidad desde la vista
-            int capacidad = ventanaPrincipal.getCantidadEspaciosTotales();
-
             // Crear el controlador y pasarle las vistas y el mapa de tarifas
-            Controlador controlador = new Controlador(ventanaPrincipal, vistaAgregar, vistaSacar, vistaFactura, tarifas, capacidad);
+            Controlador controlador = new Controlador(ventanaPrincipal, vistaAgregar, vistaSacar, vistaFactura);
 
-            ventanaPrincipal.setControlador(controlador);
             ventanaPrincipal.setVisible(true);
         });
 

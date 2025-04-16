@@ -10,7 +10,6 @@ import java.util.Map;
 
 public class VentanaPrincipal extends JFrame {
     private JLabel Titulo;
-    private JButton btnActualizar;
     private JButton btnAgregar;
     private JButton btnSacar;
     private JCheckBox cbBicicletas;
@@ -57,9 +56,7 @@ public class VentanaPrincipal extends JFrame {
         setContentPane(mainPanel);
         setLocationRelativeTo(null);
 
-    }
-    public void setControlador(Controlador controlador) {
-        this.controlador = controlador;
+        controlador = new Controlador(this, agregarVehiculo, sacarVehiculo, factura);
     }
     public void setTexto(String texto) {
         lbEspaciosDisponibles.setText(texto);
@@ -84,10 +81,10 @@ public class VentanaPrincipal extends JFrame {
         DefaultTableModel modelo = (DefaultTableModel) tblReporteVehiculos.getModel();
         modelo.addRow(new Object[]{placa, vehiculo, propietario, tipo, hora});
     }
-
-    public int getCantidadEspaciosTotales() {
-        return Integer.parseInt(lbEspaciosTotales.getText());
+    public void setEspaciosTotales(String texto) {
+        lbEspaciosTotales.setText(texto);
     }
+
     public void setLbEspaciosDisponibles(String texto) {
         lbEspaciosDisponibles.setText(texto);
     }
@@ -121,7 +118,6 @@ public class VentanaPrincipal extends JFrame {
         jPanel1 = new JPanel();
         btnAgregar = new JButton();
         btnSacar = new JButton();
-        btnActualizar = new JButton();
         cbTodos = new JCheckBox();
         cbCarros = new JCheckBox();
         cbBicicletas = new JCheckBox();
@@ -143,9 +139,6 @@ public class VentanaPrincipal extends JFrame {
 
 
         btnSacar.setText("Sacar");
-
-
-        btnActualizar.setText("Actualizar");
 
 
         cbTodos.setText("Todos");
@@ -226,8 +219,7 @@ public class VentanaPrincipal extends JFrame {
                                                                 .addComponent(btnAgregar)
                                                                 .addGap(18, 18, 18)
                                                                 .addComponent(btnSacar)
-                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                .addComponent(btnActualizar))
+                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
                                                         .addComponent(Titulo))
                                                 .addGap(0, 0, Short.MAX_VALUE)))
                                 .addContainerGap())
@@ -241,8 +233,7 @@ public class VentanaPrincipal extends JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(btnAgregar, javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                .addComponent(btnSacar)
-                                                .addComponent(btnActualizar)))
+                                                .addComponent(btnSacar)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(jLabel1)
@@ -272,13 +263,6 @@ public class VentanaPrincipal extends JFrame {
                                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
         );
-        /*layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addContainerGap())
-        );*/
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
@@ -286,10 +270,6 @@ public class VentanaPrincipal extends JFrame {
                                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
         );
-        /*layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );*/
 
         pack();
     }

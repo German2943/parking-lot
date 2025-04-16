@@ -22,14 +22,26 @@ public class Controlador{
     SacarVehiculo vistaSacar;
     Factura vistaFactura;
     private Parqueadero parqueadero;
+    private final Map<String, Double> tarifas;
+    private final int capacidad;
 
 
-    public Controlador(VentanaPrincipal vistaPrincipal, AgregarVehiculo vistaAgregar, SacarVehiculo vistaSacar, Factura vistaFactura, Map<String, Double> tarifas, int capacidad){
+    public Controlador(VentanaPrincipal vistaPrincipal, AgregarVehiculo vistaAgregar, SacarVehiculo vistaSacar, Factura vistaFactura){
         this.vistaPrincipal = vistaPrincipal;
         this.vistaAgregar = vistaAgregar;
         this.vistaSacar = vistaSacar;
         this.vistaFactura = vistaFactura;
+
+        this.capacidad = 100;
+
+        this.tarifas = new HashMap<>();
+        tarifas.put("Automovil", 2000.0);
+        tarifas.put("Motocicleta", 1000.0);
+        tarifas.put("Bicicleta", 500.0);
         this.parqueadero = new Parqueadero(capacidad, tarifas);
+        vistaPrincipal.setEspaciosTotales(String.valueOf(capacidad));
+        vistaPrincipal.setLbEspaciosDisponibles(String.valueOf(capacidad));
+        vistaPrincipal.setLbEspaciosOcupados("0");
 
         this.vistaPrincipal.getBtnAgregar().addActionListener(new ActionListener() {
             @Override
@@ -53,7 +65,7 @@ public class Controlador{
         this.vistaFactura.getBtnPagar().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String placaODocumento = vistaFactura.getPlaca().trim(); // ahora se acepta placa o documento/nombre
+                String placaODocumento = vistaFactura.getPlaca().trim();
 
                 if (placaODocumento.isEmpty()) {
                     JOptionPane.showMessageDialog(null, "No hay vehículo seleccionado.", "Advertencia", JOptionPane.WARNING_MESSAGE);
@@ -69,7 +81,7 @@ public class Controlador{
                     DefaultTableModel modeloTabla = (DefaultTableModel) vistaPrincipal.getTabla().getModel();
                     for (int i = 0; i < modeloTabla.getRowCount(); i++) {
                         String placaTabla = (String) modeloTabla.getValueAt(i, 0);
-                        if (placaTabla.equals(placaODocumento)) {  // Ahora buscamos con la placa o documento
+                        if (placaTabla.equals(placaODocumento)) {  // buscamos con la placa o documento
                             String horaEntradalb = vistaFactura.getLbHoraEntrada().getText();
                             String horaSalidalb = vistaFactura.getLbHoraSalida().getText();
                             modeloTabla.setValueAt(horaEntradalb + " / " + horaSalidalb, i, 4);
