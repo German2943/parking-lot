@@ -1,6 +1,22 @@
-27/05/2025 12:44 a.m
+27/05/2025 
+12:44 a.m
 missing features:
 -DAO pattern
 -CRUD implementation
 working currently in:
 -trying to figure out the format
+12:54 a.m
+-it turns out that the format was given in the assigment
+-I will try to firstly build the DAO structure, it should be a package of its own
+-from the CRUD implementation I will start with the Create process, my first idea is to first place the button
+on the main menu and from that figure out the DAO classes, so this approach towards the Creating process will
+be used as template for the rest of the CRUD implementations and the DAO classes placement inside the project 
+(later this idea was discarded, instead, the Creating and Reading process are automatic)
+
+27/05/2025 4:40 p.m
+missing features:
+-Updating and deleting process from CRUD implementation
+working currently in:
+-one of us finished the Reading and Creation process, so 
+I will try to focus on the Updating process, especifically on how to modify the data,
+my first proposal is to have a button that leads to a window that allows you to do so
