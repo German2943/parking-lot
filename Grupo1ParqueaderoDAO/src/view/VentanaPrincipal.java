@@ -79,6 +79,8 @@ public class VentanaPrincipal extends JFrame {
     public void agregarVehiculoATabla(String id, String placa, String vehiculo, String propietario, String tipo, String hora) {
         DefaultTableModel modelo = (DefaultTableModel) tblReporteVehiculos.getModel();
         modelo.addRow(new Object[]{id, placa, vehiculo, propietario, tipo, hora});
+        
+
     }
     public void setEspaciosTotales(String texto) {
         lbEspaciosTotales.setText(texto);
@@ -160,7 +162,12 @@ public class VentanaPrincipal extends JFrame {
                 new String [] {
                         "ID", "Placa", "Vehiculo", "Nombre del dueño", "Tipo del vehiculo", "Hora E/S"
                 }
-        ));
+        ){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false; // Ninguna celda se puede editar
+            }
+        });
         jScrollPane2.setViewportView(tblReporteVehiculos);
 
         jLabel1.setText("N° espacios totales:");

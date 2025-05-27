@@ -19,4 +19,12 @@ missing features:
 working currently in:
 -one of us finished the Reading and Creation process, so 
 I will try to focus on the Updating process, especifically on how to modify the data,
-my first proposal is to have a button that leads to a window that allows you to do so
+my first proposal is to have a button that leads to a window that allows you to do so, I will try with to do it
+so the user clicks modify
+
+27/05/2025 5:30 p.m
+-I think it the way my teammate built the file-management could be improved, their approach involved spliting 
+the data into several files, I think it would be better if it were a single document, I am aware that a
+monolitic structure is the opposite from what we should use in OOP, but this very time it could be benefical,
+but in case it does not work, I will be doing this in a separated branch
+ 
