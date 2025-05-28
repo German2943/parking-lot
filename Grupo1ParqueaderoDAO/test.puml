@@ -1,0 +1,420 @@
+@startuml
+class dao.EspacioParqueoDaoImpl {
+- String rutaArchivo
+- DateTimeFormatter formatter
++ List<EspacioParqueo> leerTodos()
++ void guardarTodos(List<EspacioParqueo>)
++ void crear(EspacioParqueo)
++ EspacioParqueo leer(int)
++ void actualizar(EspacioParqueo)
++ void eliminar(int)
+}
+
+
+class dao.ClienteDaoImpl {
+- String rutaArchivo
++ List<Cliente> leerTodos()
++ void guardarTodos(List<Cliente>)
++ void crear(Cliente)
++ Cliente leer(String)
++ void actualizar(Cliente)
++ void eliminar(String)
+}
+
+
+class Main {
++ {static} void main(String[])
+}
+
+class dao.BicicletaDaoImpl {
+- String rutaArchivo
++ List<Bicicleta> leerTodos()
++ void guardarTodos(List<Bicicleta>)
++ void crear(Bicicleta)
++ Bicicleta leer(String)
++ void actualizar(Bicicleta)
++ void eliminar(String)
+}
+
+
+class controller.Controlador {
+~ VentanaPrincipal vistaPrincipal
+~ AgregarVehiculo vistaAgregar
+~ SacarVehiculo vistaSacar
+~ Factura vistaFactura
+- Parqueadero parqueadero
+- Map<String,Double> tarifas
+- int capacidad
+- TicketDao ticketDao
+- AutomovilDao autoDao
+- MotocicletaDao motoDao
+- BicicletaDao biciDao
+- ClienteDao clienteDao
+- EspacioParqueoDao espacioParqueoDao
+- void ventanaModificación()
+- void actualizarTablaSegunFiltros()
+- void agregarTicketsATabla(List<Ticket>)
+- void prepararFactura(String)
+- void cambiarAVistaAgregar()
+- void cambiarAVistaSacar()
+- void cambiarAVistaFactura()
+}
+
+
+class controller.Controlador$GuardarVehiculoListener {
++ void actionPerformed(ActionEvent)
+}
+
+class controller.Controlador$SacarVehiculoListener {
++ void actionPerformed(ActionEvent)
+}
+
+class controller.Controlador$VolverListener {
++ void actionPerformed(ActionEvent)
+}
+
+class controller.Controlador$VolverListener2 {
++ void actionPerformed(ActionEvent)
+}
+
+class controller.Controlador$VolverListener3 {
++ void actionPerformed(ActionEvent)
+}
+
+class model.Ticket {
+- Cliente cliente
+- Vehiculo vehiculo
+- LocalDateTime horaEntrada
+- LocalDateTime horaSalida
+- double valorPagar
+- {static} int contadorId
+- int idTicket
++ {static} int getContador()
++ {static} void setContador(int)
++ void registrarSalida(LocalDateTime,double)
+- double calcularCosto(double)
++ int getIdTicket()
++ Cliente getCliente()
++ Vehiculo getVehiculo()
++ LocalDateTime getHoraEntrada()
++ LocalDateTime getHoraSalida()
++ double getValorPagar()
++ String toCSV()
++ {static} Ticket fromCSV(String)
+}
+
+
+class view.VentanaPrincipal {
+- JLabel Titulo
+- JButton btnAgregar
+- JButton btnSacar
+- JButton btnEliminarDatos
+- JCheckBox cbBicicletas
+- JCheckBox cbCarros
+- JCheckBox cbMotos
+- JCheckBox cbTodos
+- JCheckBox cbEnParqueadero
+- JLabel jLabel1
+- JLabel jLabel2
+- JLabel jLabel3
+- JPanel jPanel1
+- JScrollPane jScrollPane2
+- JLabel lbEspaciosDisponibles
+- JLabel lbEspaciosOcupados
+- JLabel lbEspaciosTotales
+- JTable tblReporteVehiculos
+- Controlador controlador
+- CardLayout cardLayout
+- JPanel mainPanel
++ void setTexto(String)
++ JPanel getVistaPrincipal()
++ JButton getBtnAgregar()
++ JButton getBtnSacar()
++ JTable getTabla()
++ void cambiarVista(JPanel)
++ void agregarVehiculoATabla(String,String,String,String,String,String)
++ void setEspaciosTotales(String)
++ void setLbEspaciosDisponibles(String)
++ void setLbEspaciosOcupados(String)
++ JCheckBox getCbTodos()
++ JCheckBox getCbMotos()
++ JCheckBox getCbCarros()
++ JCheckBox getCbBicicletas()
++ JCheckBox getCbEnParqueadero()
+- void initComponents()
+}
+
+
+interface dao.MotocicletaDao {
+~ void crear(Motocicleta)
+~ Motocicleta leer(String)
+~ void actualizar(Motocicleta)
+~ void eliminar(String)
+~ List<Motocicleta> leerTodos()
+~ void guardarTodos(List<Motocicleta>)
+}
+
+interface dao.TicketDao {
+~ void crear(Ticket)
+~ Ticket buscarPorId(int)
+~ List<Ticket> leerTodos()
+~ void actualizar(Ticket)
+~ void eliminar(int)
+}
+
+class view.Factura {
+- JButton btnPagar
+- JLabel jLabel1
+- JLabel lbDocumento
++ void setTextoNombreCliente(String)
++ void setTextoDocumento(String)
++ void setTextoPlaca(String)
++ void setTextoHoraEntrada(String)
++ void setTextoHoraSalida(String)
++ void setTextoValorPagar(String)
++ void setTextoId(String)
+- void initComponents()
++ JLabel getLbDocumento()
++ JLabel getLbHoraEntrada()
++ JLabel getLbHoraSalida()
++ JLabel getLbNombreCliente()
++ String getPlaca()
++ String getId()
++ JLabel getLbValorPagar()
++ JButton getBtnPagar()
++ void addFacturaListener(ActionListener)
++ void addVolverListener(ActionListener)
+}
+
+
+class model.EspacioParqueo {
+- int numero
+- Vehiculo vehiculo
+- Ticket ticket
++ void setTicket(Ticket)
++ Ticket getTicket()
++ int getNumero()
++ boolean estaDisponible()
++ void ocupar(Vehiculo)
++ void liberar()
++ Vehiculo getVehiculo()
+}
+
+
+interface dao.EspacioParqueoDao {
+~ void crear(EspacioParqueo)
+~ EspacioParqueo leer(int)
+~ void actualizar(EspacioParqueo)
+~ void eliminar(int)
+~ List<EspacioParqueo> leerTodos()
+~ void guardarTodos(List<EspacioParqueo>)
+}
+
+class model.Automovil {
+- String placa
++ String getPlaca()
+}
+
+
+interface dao.ClienteDao {
+~ void crear(Cliente)
+~ Cliente leer(String)
+~ void actualizar(Cliente)
+~ void eliminar(String)
+~ List<Cliente> leerTodos()
+~ void guardarTodos(List<Cliente>)
+}
+
+class dao.TicketDaoImpl {
+- {static} String ARCHIVO
+- {static} DateTimeFormatter FORMATTER
++ void crear(Ticket)
++ Ticket buscarPorId(int)
++ List<Ticket> leerTodos()
++ void actualizar(Ticket)
++ void eliminar(int)
+}
+
+
+class model.Bicicleta {
+- String numeroSerie
++ String getNumeroSerie()
+}
+
+
+abstract class model.Vehiculo {
+# Cliente cliente
+# String modelo
+# String tipo
++ Cliente getCliente()
++ String getPropietario()
++ String getDocumentoPropietario()
++ String getModelo()
++ String getTipo()
+}
+
+
+class model.Cliente {
+- String nombre
+- String documento
++ String getDocumento()
++ void setDocumento(String)
++ String getNombre()
++ void setNombre(String)
+}
+
+
+interface dao.BicicletaDao {
+~ void crear(Bicicleta)
+~ Bicicleta leer(String)
+~ void actualizar(Bicicleta)
+~ void eliminar(String)
+~ List<Bicicleta> leerTodos()
+~ void guardarTodos(List<Bicicleta>)
+}
+
+class dao.MotocicletaDaoImpl {
+- String rutaArchivo
++ List<Motocicleta> leerTodos()
++ void guardarTodos(List<Motocicleta>)
++ void crear(Motocicleta)
++ Motocicleta leer(String)
++ void actualizar(Motocicleta)
++ void eliminar(String)
+}
+
+
+class view.SacarVehiculo {
+- JButton btnSacar
+- JLabel jLabel1
+- JTextField txtId
+- CardLayout cardLayout
+- JPanel mainPanel
+- void initComponents()
++ void addSacarListener(ActionListener)
++ void addVolverListener(ActionListener)
++ String getNombreCliente()
++ String getDocumento()
++ String getPlaca()
++ String getId()
++ JPanel getVistaSacar()
++ JButton getBtnSacar()
++ void cambiarVista(JPanel)
++ void limpiarCampos()
+}
+
+
+class dao.AutomovilDaoImpl {
+- String rutaArchivo
++ List<Automovil> leerTodos()
++ void guardarTodos(List<Automovil>)
++ void crear(Automovil)
++ Automovil leer(String)
++ void actualizar(Automovil)
++ void eliminar(String)
+}
+
+
+class dao.BotonVaciarArchivo {
+- void vaciarArchivo(String)
+}
+
+class view.VentanaModificación {
+}
+interface dao.AutomovilDao {
+~ void crear(Automovil)
+~ Automovil leer(String)
+~ void actualizar(Automovil)
+~ void eliminar(String)
+~ List<Automovil> leerTodos()
+~ void guardarTodos(List<Automovil>)
+}
+
+class model.Parqueadero {
+- List<EspacioParqueo> espacios
+- List<Ticket> historialVehiculos
+- Map<String,Double> tarifas
+- Map<Integer,Ticket> todosLosTickets
++ EspacioParqueo agregarVehiculo(Vehiculo)
++ EspacioParqueo agregarVehiculoConTicket(Ticket)
++ Ticket darSalidaVehiculoPorIdentificador(String,LocalDateTime)
++ Ticket buscarTicketPorPlacaOPropietario(String,String,String)
++ boolean existeVehiculoEnParqueadero(String)
++ double calcularValorPorTicket(Ticket,LocalDateTime)
++ List<Ticket> getTicketsFiltrados(String,boolean)
++ Ticket buscarTicketPorId(int)
++ Ticket getTicketPorId(int)
++ Ticket darSalidaVehiculoPorIdTicket(int,LocalDateTime)
++ int getEspaciosDisponibles()
++ int getEspaciosOcupados()
+}
+
+
+class view.AgregarVehiculo {
+- JButton btnGuardar
+- JComboBox<String> cbTipoVehiculo
+- JLabel jLabel1
+- JTextField txtDocumento
+- void initComponents()
++ String getNombreCliente()
++ String getDocumento()
++ String getPlaca()
++ String getTipoVehiculo()
++ String getModelo()
++ void addGuardarListener(ActionListener)
++ void addVolverListener(ActionListener)
++ void limpiarCampos()
+}
+
+
+class model.Motocicleta {
+- String placa
++ String getPlaca()
+}
+
+
+class dao.Historial {
+- ArrayList<String> ids
+- String temporalEntrada
+- String temporalSalida
+- ArrayList<String> lines
++ ArrayList<String> getLines()
++ void setLines(ArrayList<String>)
++ String getTemporalEntrada()
++ void setTemporalEntrada(String)
++ String getTemporalSalida()
++ void setTemporalSalida(String)
++ ArrayList<String> getIds()
++ void setIds(ArrayList<String>)
++ void agregarHistorial(boolean)
++ void añadir(String,boolean)
+}
+
+
+
+
+dao.EspacioParqueoDao <|.. dao.EspacioParqueoDaoImpl
+dao.ClienteDao <|.. dao.ClienteDaoImpl
+dao.BicicletaDao <|.. dao.BicicletaDaoImpl
+controller.Controlador +.. controller.Controlador$GuardarVehiculoListener
+controller.ActionListener <|.. controller.Controlador$GuardarVehiculoListener
+controller.Controlador +.. controller.Controlador$SacarVehiculoListener
+controller.ActionListener <|.. controller.Controlador$SacarVehiculoListener
+controller.Controlador +.. controller.Controlador$VolverListener
+controller.ActionListener <|.. controller.Controlador$VolverListener
+controller.Controlador +.. controller.Controlador$VolverListener2
+controller.ActionListener <|.. controller.Controlador$VolverListener2
+controller.Controlador +.. controller.Controlador$VolverListener3
+controller.ActionListener <|.. controller.Controlador$VolverListener3
+view.JFrame <|-- view.VentanaPrincipal
+view.JPanel <|-- view.Factura
+model.Vehiculo <|-- model.Automovil
+dao.TicketDao <|.. dao.TicketDaoImpl
+model.Vehiculo <|-- model.Bicicleta
+dao.MotocicletaDao <|.. dao.MotocicletaDaoImpl
+view.JPanel <|-- view.SacarVehiculo
+dao.AutomovilDao <|.. dao.AutomovilDaoImpl
+dao.JButton <|-- dao.BotonVaciarArchivo
+view.JPanel <|-- view.AgregarVehiculo
+model.Vehiculo <|-- model.Motocicleta
+@enduml

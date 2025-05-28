@@ -91,7 +91,11 @@ public class Historial {
                     getLines().set(indexBuscar,line);
                     try (PrintWriter pw = new PrintWriter(new FileWriter(ruta))) {
                         for (String lineaAux : getLines()) {
-                            pw.println(lineaAux);
+
+
+                            if(!getIds().contains(id[0])){
+                                pw.println(lineaAux);
+                            }
                         }
                     } catch (IOException e) {
                         e.printStackTrace();
