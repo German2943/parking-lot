@@ -48,7 +48,7 @@ public class Historial {
             String linea;
             while ((linea = br.readLine()) != null) {
                 String[] partes=linea.split(",");
-                String lineaFinal=partes[0]+","+partes[5]+","+partes[4]+","+partes[6]+","+partes[7]+partes[0];
+                String lineaFinal=partes[0]+","+partes[5]+","+partes[4]+","+partes[6]+","+partes[7]+","+partes[0];
                 añadir(lineaFinal, sobreescribir);
             }
         } catch (IOException e) {
