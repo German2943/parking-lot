@@ -19,7 +19,7 @@ public class TicketDaoImpl implements TicketDao {
             e.printStackTrace();
         }
 
-        
+
     }
 
     @Override
@@ -60,6 +60,9 @@ public class TicketDaoImpl implements TicketDao {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        Historial historial=new Historial();
+        historial.agregarHistorial(true);
+
     }
 
     @Override

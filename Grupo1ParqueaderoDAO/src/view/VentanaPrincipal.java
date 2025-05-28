@@ -24,6 +24,7 @@ public class VentanaPrincipal extends JFrame {
     private JLabel lbEspaciosOcupados;
     private JLabel lbEspaciosTotales;
     private JTable tblReporteVehiculos;
+
     private Controlador controlador;
 
     private CardLayout cardLayout;
@@ -57,6 +58,9 @@ public class VentanaPrincipal extends JFrame {
 
         controlador = new Controlador(this, agregarVehiculo, sacarVehiculo, factura);
     }
+
+
+
     public void setTexto(String texto) {
         lbEspaciosDisponibles.setText(texto);
     }
@@ -80,9 +84,7 @@ public class VentanaPrincipal extends JFrame {
         DefaultTableModel modelo = (DefaultTableModel) tblReporteVehiculos.getModel();
         modelo.addRow(new Object[]{id, placa, vehiculo, propietario, tipo, hora});
         Historial historial=new Historial();
-        String line=id+","+placa+","+tipo+","+hora;
-
-        historial.añadir(line);
+        historial.agregarHistorial(false);
 
 
     }

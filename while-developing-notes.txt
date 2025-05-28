@@ -29,5 +29,23 @@ monolitic structure is the opposite from what we should use in OOP, but this ver
 but in case it does not work, I will be doing this in a separated branch
 
 27/05/2025 5:57 p.m
--I noticed some issues with the file, manegement, short-long-history: the controller's constructor 
+-I noticed some issues with the file, manegement, short-long-history: the controller's constructor is built so it
+repeats certain method that writes in the main file, I will work on that.
+
+
+27/05/2025 6:02 p.m
+-fixed the repeated-line-issue, but now I have noticed that the data in the file differs from the format given in the
+assigment, I will add a class in the DAO package to manage better the data that is nedded, most of that will
+come form the ticket
+
+27/05/2025 11:37 p.m
+-it took more time than expected, but at least I have the structure for the class that allows me to get 
+the main file
+-I am starting to realize that the Updating process is more implicit from what I expected, since the updating
+of when does a vehicle leaves requires changes in the file, so what remains is adding a way to delete the info, I will work on that
+
+
+28/05/2025 5:15 a.m
+-I stumbled upon certain issues with the Updating process, it took more time than I expected (again), but this time for sure just
+remains the Deleting process;
  

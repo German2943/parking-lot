@@ -1,4 +1,6 @@
 package model;
+import dao.Historial;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -19,6 +21,7 @@ public class Ticket {
         this.vehiculo = vehiculo;
         this.horaEntrada = horaEntrada;
         this.idTicket = contadorId++;
+
     }
     public Ticket(int idTicket, Cliente cliente, Vehiculo vehiculo, LocalDateTime horaEntrada, LocalDateTime horaSalida, double valorPagar) {
         this.idTicket = idTicket;
