@@ -5,7 +5,7 @@ import controller.Controlador;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-
+import dao.Historial;
 public class VentanaPrincipal extends JFrame {
     private JLabel Titulo;
     private JButton btnAgregar;
@@ -79,7 +79,11 @@ public class VentanaPrincipal extends JFrame {
     public void agregarVehiculoATabla(String id, String placa, String vehiculo, String propietario, String tipo, String hora) {
         DefaultTableModel modelo = (DefaultTableModel) tblReporteVehiculos.getModel();
         modelo.addRow(new Object[]{id, placa, vehiculo, propietario, tipo, hora});
-        
+        Historial historial=new Historial();
+        String line=id+","+placa+","+tipo+","+hora;
+
+        historial.añadir(line);
+
 
     }
     public void setEspaciosTotales(String texto) {
