@@ -5,11 +5,14 @@ import controller.Controlador;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+
+import dao.BotonVaciarArchivo;
 import dao.Historial;
 public class VentanaPrincipal extends JFrame {
     private JLabel Titulo;
     private JButton btnAgregar;
     private JButton btnSacar;
+    private JButton btnEliminarDatos;
     private JCheckBox cbBicicletas;
     private JCheckBox cbCarros;
     private JCheckBox cbMotos;
@@ -125,6 +128,7 @@ public class VentanaPrincipal extends JFrame {
         jPanel1 = new JPanel();
         btnAgregar = new JButton();
         btnSacar = new JButton();
+        btnEliminarDatos=new BotonVaciarArchivo();
         cbTodos = new JCheckBox();
         cbCarros = new JCheckBox();
         cbBicicletas = new JCheckBox();
@@ -146,6 +150,7 @@ public class VentanaPrincipal extends JFrame {
 
 
         btnSacar.setText("Sacar");
+        btnEliminarDatos.setText("EliminarDatos");
 
 
         cbTodos.setText("Todos");
@@ -231,6 +236,8 @@ public class VentanaPrincipal extends JFrame {
                                                                 .addComponent(btnAgregar)
                                                                 .addGap(18, 18, 18)
                                                                 .addComponent(btnSacar)
+                                                                .addGap(18, 18, 18)
+                                                                .addComponent(btnEliminarDatos)
                                                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED))
                                                         .addComponent(Titulo))
                                                 .addGap(0, 0, Short.MAX_VALUE)))
@@ -245,7 +252,8 @@ public class VentanaPrincipal extends JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                         .addComponent(btnAgregar, GroupLayout.Alignment.TRAILING)
                                         .addGroup(GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                                .addComponent(btnSacar)))
+                                                .addComponent(btnSacar)
+                                                .addComponent(btnEliminarDatos)))
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                         .addComponent(jLabel1)

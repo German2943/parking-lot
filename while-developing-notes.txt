@@ -48,4 +48,7 @@ of when does a vehicle leaves requires changes in the file, so what remains is a
 28/05/2025 5:15 a.m
 -I stumbled upon certain issues with the Updating process, it took more time than I expected (again), but this time for sure just
 remains the Deleting process;
+
+28/05/2025 5:37 a.m
+-with the Deleting process completed, the CRUD is finished
  
